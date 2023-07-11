@@ -7,36 +7,25 @@
 
 import SwiftUI
 
-struct HeaderView<Left, Center, Right>: View where Left: View, Center: View, Right: View {
-    let left: () -> Left
-    let center: () -> Center
-    let right: () -> Right
-    
-    init(@ViewBuilder left: @escaping () -> Left,
-         @ViewBuilder center: @escaping () -> Center,
-         @ViewBuilder right: @escaping () -> Right) {
-        self.left = left
-        self.center = center
-        self.right = right
-    }
-    
+struct HeaderView: View {
     var body: some View {
         HStack {
-            left()
-            Spacer()
-            center()
-            Spacer()
-            right()
-            
-            Image(systemName: "magnifyingglass")
-                .padding(5)
-            Image(systemName: "bag")
+            Image(systemName: "bell")
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("MUSINSA")
+                .frame(maxWidth: .infinity, alignment: .center)
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .padding(5)
+                Image(systemName: "bag")
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 }
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView<<#Left: View#>, <#Center: View#>, <#Right: View#>>()
+        HeaderView()
     }
 }

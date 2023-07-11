@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HeaderView()
+            CustomTopTabBar()
             Spacer()
         }
         .padding(16)
