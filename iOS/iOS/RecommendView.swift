@@ -9,9 +9,11 @@ import SwiftUI
 
 struct RecommendView: View {
     var body: some View {
-        HStack {
-            
-        }
+		ZStack {
+			Rectangle()
+				.foregroundColor(.orange)
+			Text("추천 화면")
+		}
     }
 }
 

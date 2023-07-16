@@ -9,9 +9,11 @@ import SwiftUI
 
 struct RankingView: View {
     var body: some View {
-        HStack {
-            
-        }
+		ZStack {
+			Rectangle()
+				.foregroundColor(.cyan)
+			Text("랭킹 화면")
+		}
     }
 }
 
