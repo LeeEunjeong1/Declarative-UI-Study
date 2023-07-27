@@ -33,6 +33,7 @@ struct HeaderView: View {
 				}
 				.frame(maxWidth: .infinity, alignment: .trailing)
 			}
+            .padding(.init(top: 16, leading: 16, bottom: 0, trailing: 16))
 			
 			CustomTopTabBar(tabIndex: $tabIndex)
 			if tabIndex == 1 {
