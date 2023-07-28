@@ -10,9 +10,10 @@ import SwiftUI
 struct RecommendView: View {
     var body: some View {
 		ZStack {
-			Rectangle()
-				.foregroundColor(.orange)
-			Text("추천 화면")
+			GeometryReader { geometry in
+				ImageSlideView()
+					.frame(height: geometry.size.width)
+			}
 		}
     }
 }

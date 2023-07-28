@@ -23,7 +23,8 @@ struct CustomTopTabBar: View {
                 .onTapGesture { onButtonTapped(index: 3) }
             TabBarButton(text: "세일", isSelected: .constant(tabIndex == 4))
                 .onTapGesture { onButtonTapped(index: 4) }
-            Spacer()
+			TabBarButton(text: "뷰티", isSelected: .constant(tabIndex == 5))
+				.onTapGesture { onButtonTapped(index: 5) }
         }
     }
     
