@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ImageSlideView: View {
 	private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-	@State private var selection: Int = 0
+    @State private var index = 1
+    @State private var selectedNum: String = ""
 	private let images: [String] = ["slide1", "slide2", "slide3"]
 	
 	var body: some View {
-		TabView(selection: $selection) {
+		TabView(selection: $selectedNum) {
 			ForEach(images, id: \.self) {
 				Image($0)
 					.resizable()
@@ -23,7 +24,8 @@ struct ImageSlideView: View {
 		.tabViewStyle(.page)
 		.onReceive(timer, perform: { _ in
 			withAnimation {
-				selection = selection < 3 ? selection + 1 : 0
+                index = index < images.count ? index + 1 : 1
+                selectedNum = images[index - 1]
 			}
 		})
 	}
