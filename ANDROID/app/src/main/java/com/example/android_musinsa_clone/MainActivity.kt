@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.MutatePriority
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -13,13 +15,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
+import com.example.android_musinsa_clone.ui.home.RecommendScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -34,7 +38,7 @@ class MainActivity : ComponentActivity() {
 
 @ExperimentalPagerApi
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun ToolbarWithMenu(name: String) {
     Scaffold(
@@ -73,8 +77,10 @@ fun ToolbarWithMenu(name: String) {
 
                 verticalArrangement = Arrangement.Center
             ) {
-                val pagerState = rememberPagerState()
+
                 val coroutineScope = rememberCoroutineScope()
+                val pagerState = rememberPagerState()
+//                pagerState.disableScrolling(scope = coroutineScope)
 
                 androidx.compose.material.TabRow(
                     selectedTabIndex = pagerState.currentPage,
@@ -87,17 +93,17 @@ fun ToolbarWithMenu(name: String) {
                             )
                         )
                     }) {
-                    pageList.forEachIndexed { index, title ->
+                    PageList.values().forEachIndexed { index, title ->
                         Tab(
                             text = {
                                 if (pagerState.currentPage == index) {
                                     Text(
-                                        text = title,
+                                        text = title.title,
                                         fontWeight = FontWeight.Bold
                                     )
                                 } else {
                                     Text(
-                                        text = title
+                                        text = title.title
                                     )
                                 }
 
@@ -105,20 +111,26 @@ fun ToolbarWithMenu(name: String) {
                             selected = pagerState.currentPage == index,
                             onClick = {
                                 coroutineScope.launch {
+//                                    pagerState.enableScrolling(coroutineScope)
+//                                    delay(100)
                                     pagerState.scrollToPage(index)
+//                                    pagerState.disableScrolling(coroutineScope)
                                 }
                             },
                         )
                     }
                 }
-                HorizontalPager(count = pageList.size, state = pagerState) { page ->
-                    Text(
-                        modifier = Modifier.wrapContentSize(),
-                        text = pageList[page],
-                        textAlign = TextAlign.Center,
-                        fontSize = 30.sp
-                    )
-
+                HorizontalPager(
+                    count = PageList.values().size,
+                    state = pagerState
+                ) { page ->
+                    when (page) {
+                        0 -> RecommendScreen()
+                        1 -> Text(PageList.RANKING.name)
+                        2 -> Text(PageList.STYLE.name)
+                        3 -> Text(PageList.SALE.name)
+                        4 -> Text(PageList.BEAUTY.name)
+                    }
                 }
             }
 
@@ -131,6 +143,33 @@ fun ToolbarWithMenu(name: String) {
 @Composable
 fun PreviewScreen() {
     ToolbarWithMenu(name = "MUSINSA")
+
 }
 
-val pageList = listOf("추천", "랭킹", "스타일", "세일", "뷰티")
+enum class PageList(val title: String) {
+    RECOMMEND("추천"),
+    RANKING("랭킹"),
+    STYLE("스타일"),
+    SALE("세일"),
+    BEAUTY("뷰티")
+}
+
+@ExperimentalPagerApi
+fun PagerState.disableScrolling(scope: CoroutineScope) {
+    scope.launch {
+        scroll(scrollPriority = MutatePriority.PreventUserInput) {
+            // Await indefinitely, blocking scrolls
+            awaitCancellation()
+        }
+    }
+}
+
+@ExperimentalPagerApi
+fun PagerState.enableScrolling(scope: CoroutineScope) {
+    scope.launch {
+        scroll(scrollPriority = MutatePriority.PreventUserInput) {
+            // Do nothing, just cancel the previous indefinite "scroll"
+
+        }
+    }
+}
