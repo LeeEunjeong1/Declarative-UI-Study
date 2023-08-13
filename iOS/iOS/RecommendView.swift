@@ -8,11 +8,45 @@
 import SwiftUI
 
 struct RecommendView: View {
+	private let gridData: [(String, String)] = [("grid1", "신학기특가"), ("grid2", "럭셔리"), ("grid3", "뷰티"), ("grid4", "스포츠"), ("grid5", "아울렛"), ("grid6", "키즈"), ("grid7", "골프"), ("grid8", "어스"), ("grid9", "여행패션"), ("grid10", "패션톡")]
+	private let imgData: [String] = ["grid1", "grid2", "grid3", "grid4", "grid5", "grid6", "grid7", "grid8", "grid9", "grid10"]
+	private let txtData: [String] = ["신학기특가", "럭셔리", "뷰티", "스포츠", "아울렛", "키즈", "골프", "어스", "여행패션", "패션톡"]
+	
+	private var columns: [GridItem] {
+		Array(
+			repeating: GridItem(
+				.flexible(),
+				spacing: 16
+			),
+			count: 5
+		)
+	}
+	
     var body: some View {
-		ZStack {
-			GeometryReader { geometry in
-				ImageSlideView()
-					.frame(height: geometry.size.width)
+		VStack {
+			GeometryReader { proxy in
+				VStack {
+					ImageSlideView()
+						.frame(height: proxy.size.width)
+					LazyVGrid(columns: columns, content: {
+						ForEach((0..<10), id: \.self) { i in
+							VStack {
+								Rectangle()
+									.fill(Color("lightGray"))
+									.frame(height: (proxy.size.width - 16 * 6) / 5)
+									.overlay {
+										Image(imgData[i])
+											.resizable()
+											.aspectRatio(contentMode: .fit)
+									}
+									.clipShape(RoundedRectangle(cornerRadius: 10))
+								Text(txtData[i])
+									.lineLimit(1)
+							}
+						}
+					})
+					.padding(16)
+				}
 			}
 		}
     }
