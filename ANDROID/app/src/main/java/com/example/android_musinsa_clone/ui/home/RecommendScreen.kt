@@ -178,13 +178,12 @@ fun menuScreen(
         modifier = Modifier
             .fillMaxWidth()
             .height(220.dp)
-            .padding(20.dp)
-            .height(50.dp),
+            .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(22.dp)
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             for (index in 0..4) {
                 Item(MenuList.values()[index])
@@ -192,7 +191,7 @@ fun menuScreen(
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(22.dp)
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             for (index in 5..9) {
                 Item(MenuList.values()[index])
@@ -231,7 +230,10 @@ fun LiveScreen() {
             text = "무신사 라이브 편성표",
             fontWeight = FontWeight.Bold
         )
-        Text(text = "패션 라이브 쇼핑도 무신사랑")
+        Text(
+            text = "패션 라이브 쇼핑도 무신사랑", fontSize = 10.sp,
+            modifier = Modifier.padding(bottom = 5.dp)
+        )
         LiveTable()
     }
 
@@ -240,16 +242,22 @@ fun LiveScreen() {
 @Composable
 fun LiveTable() {
     LazyRow(
-        modifier = Modifier.height(200.dp)
+        modifier = Modifier.fillMaxSize(),
+        horizontalArrangement = Arrangement.spacedBy(5.dp)
     ) {
         itemsIndexed(LiveList.values()) { index, item ->
-            LiveItem(item = item)
+            LiveItem(index = index, item = item)
         }
     }
 }
 
 @Composable
-fun LiveItem(item: LiveList) {
+fun LiveItem(index: Int, item: LiveList) {
+    val textBackgroundColor = if (index == 0) {
+        Color.Red
+    } else {
+        Color.Black
+    }
     Column(
         modifier = Modifier.width(100.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp)
@@ -257,7 +265,8 @@ fun LiveItem(item: LiveList) {
         Box() {
             Image(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .height(150.dp)
                     .clip(RoundedCornerShape(10.dp)),
                 painter = painterResource(id = item.resource),
                 contentDescription = "image",
@@ -267,16 +276,16 @@ fun LiveItem(item: LiveList) {
                 text = item.date,
                 color = Color.White,
                 modifier = Modifier
+                    .padding(5.dp)
                     .background(
-                        color = Color.Black,
+                        color = textBackgroundColor,
                         shape = RoundedCornerShape(5.dp)
                     )
                     .padding(5.dp),
-                fontSize = 10.sp
+                fontSize = 8.sp
             )
         }
         Text(text = item.title)
-
     }
 }
 
@@ -301,7 +310,7 @@ enum class MenuList(val engText: String, val koText: String) {
 }
 
 enum class LiveList(val resource: Int, val title: String, val date: String) {
-    ONE(R.drawable.img_main_1, "주앙옴므 | 기획전 바로가기", "LIVE"),
+    ONE(R.drawable.ic_launcher_background, "주앙옴므 | 기획전 바로가기", "LIVE"),
     TWO(R.drawable.img_main_2, "스파오 | 최대 50% 할인", "오늘 오후 8시"),
     THREE(R.drawable.img_main_3, "스파오 | 최대 50% 할인", "오늘 오후 8시"),
     FOUR(R.drawable.img_main_1, "스파오 | 최대 50% 할인", "오늘 오후 8시"),
