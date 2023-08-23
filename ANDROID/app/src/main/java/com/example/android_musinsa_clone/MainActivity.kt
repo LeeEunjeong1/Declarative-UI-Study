@@ -6,6 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.MutatePriority
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -41,6 +43,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun ToolbarWithMenu(name: String) {
+    val scrollState = rememberScrollState()
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -73,7 +76,8 @@ fun ToolbarWithMenu(name: String) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding),
+                    .padding(innerPadding)
+                    .verticalScroll(scrollState),
 
                 verticalArrangement = Arrangement.Center
             ) {

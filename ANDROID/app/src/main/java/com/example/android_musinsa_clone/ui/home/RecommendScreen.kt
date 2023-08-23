@@ -7,14 +7,19 @@ import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,10 +27,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,6 +57,7 @@ fun RecommendScreen(
     Column(modifier = Modifier.fillMaxHeight()) {
         AdPagerScreen()
         menuScreen()
+        LiveScreen()
     }
 }
 
@@ -165,15 +174,29 @@ fun AdPagerScreen() {
 @Composable
 fun menuScreen(
 ) {
-    LazyVerticalGrid(
-        modifier = Modifier.padding(15.dp),
-        columns = GridCells.Fixed(5),
-        verticalArrangement = Arrangement.spacedBy(15.dp),
-        horizontalArrangement = Arrangement.spacedBy(5.dp)
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(220.dp)
+            .padding(20.dp)
+            .height(50.dp),
+        verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        items(MenuList.values().size) { item ->
-            Log.d("item ", item.toString())
-            Item(MenuList.values()[item])
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(22.dp)
+        ) {
+            for (index in 0..4) {
+                Item(MenuList.values()[index])
+            }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(22.dp)
+        ) {
+            for (index in 5..9) {
+                Item(MenuList.values()[index])
+            }
         }
     }
 }
@@ -184,8 +207,9 @@ fun Item(item: MenuList) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(
-            modifier = Modifier.size(55.dp)
-                .background(color= Gray100, shape= RoundedCornerShape(15.dp)),
+            modifier = Modifier
+                .size(55.dp)
+                .background(color = Gray100, shape = RoundedCornerShape(15.dp)),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -195,6 +219,64 @@ fun Item(item: MenuList) {
             )
         }
         Text(text = item.koText)
+    }
+}
+
+@Composable
+fun LiveScreen() {
+    Column(
+        modifier = Modifier.padding(10.dp)
+    ) {
+        Text(
+            text = "무신사 라이브 편성표",
+            fontWeight = FontWeight.Bold
+        )
+        Text(text = "패션 라이브 쇼핑도 무신사랑")
+        LiveTable()
+    }
+
+}
+
+@Composable
+fun LiveTable() {
+    LazyRow(
+        modifier = Modifier.height(200.dp)
+    ) {
+        itemsIndexed(LiveList.values()) { index, item ->
+            LiveItem(item = item)
+        }
+    }
+}
+
+@Composable
+fun LiveItem(item: LiveList) {
+    Column(
+        modifier = Modifier.width(100.dp),
+        verticalArrangement = Arrangement.spacedBy(5.dp)
+    ) {
+        Box() {
+            Image(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(10.dp)),
+                painter = painterResource(id = item.resource),
+                contentDescription = "image",
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = item.date,
+                color = Color.White,
+                modifier = Modifier
+                    .background(
+                        color = Color.Black,
+                        shape = RoundedCornerShape(5.dp)
+                    )
+                    .padding(5.dp),
+                fontSize = 10.sp
+            )
+        }
+        Text(text = item.title)
+
     }
 }
 
@@ -216,4 +298,13 @@ enum class MenuList(val engText: String, val koText: String) {
     EARTH("Earth", "어스"),
     FASHION_TALK("Fashion Talk", "패션톡"),
     TRAVEL("Travle", "여행패션")
+}
+
+enum class LiveList(val resource: Int, val title: String, val date: String) {
+    ONE(R.drawable.img_main_1, "주앙옴므 | 기획전 바로가기", "LIVE"),
+    TWO(R.drawable.img_main_2, "스파오 | 최대 50% 할인", "오늘 오후 8시"),
+    THREE(R.drawable.img_main_3, "스파오 | 최대 50% 할인", "오늘 오후 8시"),
+    FOUR(R.drawable.img_main_1, "스파오 | 최대 50% 할인", "오늘 오후 8시"),
+    FIVE(R.drawable.img_main_1, "스파오 | 최대 50% 할인", "오늘 오후 8시"),
+    SIX(R.drawable.img_main_1, "스파오 | 최대 50% 할인", "오늘 오후 8시")
 }
