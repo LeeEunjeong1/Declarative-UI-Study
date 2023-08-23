@@ -7,17 +7,16 @@
 
 import SwiftUI
 
-struct ImageSlideView: View {
+struct CarouselView: View {
 	private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var index = 1
     @State private var selectedNum: String = ""
-	private let images: [String] = ["slide1", "slide2", "slide3"]
+	private var images: [String] = ["slide1", "slide2", "slide3"]
 	
 	var body: some View {
 		TabView(selection: $selectedNum) {
-			ForEach(images, id: \.self) {
-				Image($0)
-					.resizable()
+            ForEach(carouselData, id: \.id) {
+                Image($0.image)
 					.scaledToFill()
 			}
 		}
@@ -31,8 +30,8 @@ struct ImageSlideView: View {
 	}
 }
 
-struct ImageSlideView_Previews: PreviewProvider {
+struct CarouselView_Previews: PreviewProvider {
 	static var previews: some View {
-		ImageSlideView()
+        CarouselView()
 	}
 }

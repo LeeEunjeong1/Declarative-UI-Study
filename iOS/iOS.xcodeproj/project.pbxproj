@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9ADAC0272A737D2B009EB695 /* ImageSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADAC0262A737D2B009EB695 /* ImageSlideView.swift */; };
+		9ADAC0272A737D2B009EB695 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADAC0262A737D2B009EB695 /* CarouselView.swift */; };
 		A9ACF45B2A5D2549002A1593 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACF45A2A5D2549002A1593 /* iOSApp.swift */; };
 		A9ACF45D2A5D2549002A1593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACF45C2A5D2549002A1593 /* ContentView.swift */; };
 		A9ACF45F2A5D254B002A1593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9ACF45E2A5D254B002A1593 /* Assets.xcassets */; };
@@ -16,10 +16,14 @@
 		A9ACF46B2A5D5A14002A1593 /* CustomTopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACF46A2A5D5A14002A1593 /* CustomTopTabBar.swift */; };
 		A9ACF46D2A5D5A94002A1593 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACF46C2A5D5A94002A1593 /* RecommendView.swift */; };
 		A9ACF46F2A5D5AA2002A1593 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACF46E2A5D5AA2002A1593 /* RankingView.swift */; };
+		A9B899FD2A96148500A376FB /* HorizontalSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B899FC2A96148500A376FB /* HorizontalSlideView.swift */; };
+		A9B899FF2A96172200A376FB /* Carousel.json in Resources */ = {isa = PBXBuildFile; fileRef = A9B899FE2A96172200A376FB /* Carousel.json */; };
+		A9B89A072A96194400A376FB /* CarouselModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B89A062A96194400A376FB /* CarouselModel.swift */; };
+		A9B89A092A961BE900A376FB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B89A082A961BE900A376FB /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9ADAC0262A737D2B009EB695 /* ImageSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlideView.swift; sourceTree = "<group>"; };
+		9ADAC0262A737D2B009EB695 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		A9ACF4572A5D2549002A1593 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ACF45A2A5D2549002A1593 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		A9ACF45C2A5D2549002A1593 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -29,6 +33,10 @@
 		A9ACF46A2A5D5A14002A1593 /* CustomTopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTopTabBar.swift; sourceTree = "<group>"; };
 		A9ACF46C2A5D5A94002A1593 /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		A9ACF46E2A5D5AA2002A1593 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
+		A9B899FC2A96148500A376FB /* HorizontalSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSlideView.swift; sourceTree = "<group>"; };
+		A9B899FE2A96172200A376FB /* Carousel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Carousel.json; sourceTree = "<group>"; };
+		A9B89A062A96194400A376FB /* CarouselModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselModel.swift; sourceTree = "<group>"; };
+		A9B89A082A961BE900A376FB /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,14 +70,10 @@
 			isa = PBXGroup;
 			children = (
 				A9ACF45A2A5D2549002A1593 /* iOSApp.swift */,
-				A9ACF45C2A5D2549002A1593 /* ContentView.swift */,
-				A9ACF45E2A5D254B002A1593 /* Assets.xcassets */,
+				A9B89A052A96192500A376FB /* Model */,
+				A9B89A002A96189A00A376FB /* View */,
+				A9B89A042A9618E800A376FB /* Resources */,
 				A9ACF4602A5D254B002A1593 /* Preview Content */,
-				A9ACF4682A5D281A002A1593 /* HeaderView.swift */,
-				A9ACF46A2A5D5A14002A1593 /* CustomTopTabBar.swift */,
-				A9ACF46C2A5D5A94002A1593 /* RecommendView.swift */,
-				A9ACF46E2A5D5AA2002A1593 /* RankingView.swift */,
-				9ADAC0262A737D2B009EB695 /* ImageSlideView.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -80,6 +84,62 @@
 				A9ACF4612A5D254B002A1593 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A9B89A002A96189A00A376FB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9B89A022A9618CA00A376FB /* Common */,
+				A9B89A012A9618B100A376FB /* Components */,
+				A9B89A032A9618D400A376FB /* Scene */,
+				A9ACF45C2A5D2549002A1593 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9B89A012A9618B100A376FB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9ADAC0262A737D2B009EB695 /* CarouselView.swift */,
+				A9B899FC2A96148500A376FB /* HorizontalSlideView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A9B89A022A9618CA00A376FB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACF4682A5D281A002A1593 /* HeaderView.swift */,
+				A9ACF46A2A5D5A14002A1593 /* CustomTopTabBar.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A9B89A032A9618D400A376FB /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACF46C2A5D5A94002A1593 /* RecommendView.swift */,
+				A9ACF46E2A5D5AA2002A1593 /* RankingView.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		A9B89A042A9618E800A376FB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACF45E2A5D254B002A1593 /* Assets.xcassets */,
+				A9B899FE2A96172200A376FB /* Carousel.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A9B89A052A96192500A376FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9B89A082A961BE900A376FB /* DataManager.swift */,
+				A9B89A062A96194400A376FB /* CarouselModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +202,7 @@
 			files = (
 				A9ACF4622A5D254B002A1593 /* Preview Assets.xcassets in Resources */,
 				A9ACF45F2A5D254B002A1593 /* Assets.xcassets in Resources */,
+				A9B899FF2A96172200A376FB /* Carousel.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,12 +214,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9ACF45D2A5D2549002A1593 /* ContentView.swift in Sources */,
+				A9B89A092A961BE900A376FB /* DataManager.swift in Sources */,
 				A9ACF46F2A5D5AA2002A1593 /* RankingView.swift in Sources */,
+				A9B899FD2A96148500A376FB /* HorizontalSlideView.swift in Sources */,
 				A9ACF4692A5D281A002A1593 /* HeaderView.swift in Sources */,
 				A9ACF46B2A5D5A14002A1593 /* CustomTopTabBar.swift in Sources */,
-				9ADAC0272A737D2B009EB695 /* ImageSlideView.swift in Sources */,
+				9ADAC0272A737D2B009EB695 /* CarouselView.swift in Sources */,
 				A9ACF45B2A5D2549002A1593 /* iOSApp.swift in Sources */,
 				A9ACF46D2A5D5A94002A1593 /* RecommendView.swift in Sources */,
+				A9B89A072A96194400A376FB /* CarouselModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
