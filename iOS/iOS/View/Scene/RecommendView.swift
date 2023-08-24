@@ -23,41 +23,41 @@ struct RecommendView: View {
 	}
 	
     var body: some View {
-		ScrollView {
-			GeometryReader { proxy in
-				VStack {
-					CarouselView()
-						.frame(height: proxy.size.width)
-					LazyVGrid(columns: columns, content: {
-						ForEach((0..<10), id: \.self) { i in
-							VStack {
-								Rectangle()
-									.fill(Color("lightGray"))
-									.frame(height: (proxy.size.width - 16 * 6) / 5)
-									.overlay {
-										Image(imgData[i])
-											.resizable()
-											.aspectRatio(contentMode: .fit)
-									}
-									.clipShape(RoundedRectangle(cornerRadius: 10))
-								Text(txtData[i])
-									.lineLimit(1)
-							}
-						}
-					}).padding(16)
-                    Text("무신사 라이브 편성표")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 16)
-                        .font(.title2)
-                        .bold()
-                    Text("패션 라이브 쇼핑도 무신사랑")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 1)
-                        .font(.title3)
-                    HorizontalSlideView()
-				}
-			}
+        GeometryReader { proxy in
+            ScrollView {
+                CarouselView()
+                    .frame(height: proxy.size.width)
+                LazyVGrid(columns: columns, content: {
+                    ForEach((0..<10), id: \.self) { i in
+                        VStack {
+                            Rectangle()
+                                .fill(Color("lightGray"))
+                                .frame(height: (proxy.size.width - 16 * 6) / 5)
+                                .overlay {
+                                    Image(imgData[i])
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                }
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                            Text(txtData[i])
+                                .lineLimit(1)
+                        }
+                    }
+                }).padding(16)
+                Text("무신사 라이브 편성표")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 30)
+                    .font(.title2)
+                    .bold()
+                Text("패션 라이브 쇼핑도 무신사랑")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 1)
+                    .font(.title3)
+                HorizontalScrollView()
+                    .padding(16)
+            }
 		}
     }
 }

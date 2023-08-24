@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CarouselView: View {
-    @State private var index = 0
+    @State private var index: Int = 0
     @State private var selectedNum: Int = 0
     
-	private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+	private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     private var data: [CarouselModel] = []
     
     init() {
@@ -19,19 +19,28 @@ struct CarouselView: View {
     }
 	
 	var body: some View {
-		TabView(selection: $selectedNum) {
-            ForEach(data, id: \.id) {
-                AsyncImage(
-                    url: URL(string: $0.image),
-                    content: { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    }, placeholder: {
-                        Color.white
-                    })
-                
-                .tag($0.id)
+        TabView(selection: $selectedNum) {
+            ForEach(data, id: \.id) { data in
+                ZStack(alignment: .bottom) {
+                    AsyncImage(
+                        url: URL(string: data.image),
+                        content: { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }, placeholder: {
+                            Color.gray
+                        })
+                    .tag(data.id)
+                    Text(data.title)
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 70)
+                        .bold()
+                    Text(data.text)
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 40)
+                        .bold()
+                }
             }
         }
 		.tabViewStyle(.page)

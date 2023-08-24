@@ -8,6 +8,7 @@
 import Foundation
 
 var carouselData: [CarouselModel] = load("Carousel.json")
+var scrollData: [ScrollModel] = load("Scroll.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
