@@ -11,6 +11,11 @@ struct HorizontalSlideView: View {
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var index = 1
     @State private var selectedNum: String = ""
+    
+    
+   
+    
+    
     private let images: [String] = ["slide1", "slide2", "slide3"]
     
     var body: some View {

@@ -8,8 +8,8 @@
 import Foundation
 
 struct CarouselModel: Hashable, Codable, Identifiable {
-    let id: Int
-    let image: String
-    let title: String
-    let text: String
+    var id: Int
+    var image: String
+    var title: String
+    var text: String
 }
