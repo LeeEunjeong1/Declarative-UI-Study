@@ -16,8 +16,8 @@
     https://dev-ej2.tistory.com/
     
 - 지현
-    
-    https://jkim68888.tistory.com/
+  
+    https://jkim68888.tistory.com/category/%EC%8A%A4%ED%84%B0%EB%94%94
 
 
 ## 📱무신사 앱 클론코딩
